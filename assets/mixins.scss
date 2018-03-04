@@ -1,0 +1,39 @@
+@mixin responsiveness($sizes...) {
+  @each $size in $sizes {
+    @if $size == "xxxl" {
+      @media (max-width: 2600px) and (min-width: 1900px) {
+        @content
+      }
+    }
+    @if $size == "xxl" {
+      @media (max-width: 1980px) and (min-width: 1600px) {
+        @content
+      }
+    }
+    @if $size == "xl" {
+      @media (max-width: 1600px) and (min-width: 1441px) {
+        @content
+      }
+    }
+    @if $size == "lg" {
+      @media (max-width: 1440px) and (min-width: 1024px) {
+        @content
+      }
+    }
+    @if $size == "md" {
+      @media (max-width: 1024px) and (min-width: 768px) {
+        @content
+      }
+    }
+    @if $size == "sm" {
+      @media (max-width: 768px) and (min-width: 425px) {
+        @content
+      }
+    }
+    @if $size == "xs" {
+      @media (max-width: 425px) {
+        @content
+      }
+    }
+  }
+}
