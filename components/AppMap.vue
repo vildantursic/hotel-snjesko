@@ -1,16 +1,21 @@
 <template lang="html">
   <div class="">
     <div id="map"></div>
+  </div>
+</template>
 
-    <script type="text/javascript">
-
+<script>
+export default {
+  mounted: function () {
+    if (process.browser) {
       mapboxgl.accessToken = 'pk.eyJ1IjoidmlsZGFudHVyc2ljIiwiYSI6IjF5cnIxNDAifQ.ZwVGbqlH3ncrPBhobjrRpg';
 
       var map = new mapboxgl.Map({
         container: 'map',
         style: 'mapbox://styles/mapbox/light-v9',
         center: [18.564786, 43.736177],
-        zoom: 17
+        zoom: 16,
+        interactive: false
       });
 
       // code from the next step will go here!
@@ -42,26 +47,21 @@
             .setPopup(
               new mapboxgl.Popup({ offset: 25 })
                   .setHTML(`
-                    <h3>${marker.properties.title}</h3>
-                    <p>${marker.properties.description}</p>
-                    <img src="/hotel1.jpg" width="200"/>
+                    <img src="/images/hotel1.jpg"/>
+                    <div class="info">
+                      <h3>${marker.properties.title}</h3>
+                      <p>${marker.properties.description}</p>
+                    </div>
                   `)
             )
             .addTo(map);
       });
-
-
-    </script>
-  </div>
-</template>
-
-<script>
-export default {
-
+    }
+  }
 }
 </script>
 
-<style>
+<style lang="scss">
 #map {
   width: 700px;
   height: 600px;
@@ -76,11 +76,47 @@ export default {
 }
 
 .mapboxgl-popup {
-  max-width: 200px;
+  position: relative;
+  max-width: 300px;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+
+  .mapboxgl-popup-content {
+    overflow: hidden;
+  }
+
+  &:hover {
+    img {
+      transform: scale(1.4);
+    }
+  }
+
+  img {
+    height: 100%;
+    width: 100%;
+    transition: ease .5s;
+    transform: scale(1.2);
+  }
+
+  .info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    color: white;
+    background: #2196F3;
+    padding: 5px;
+
+    h3, p {
+      margin: 0;
+      padding: 0;
+    }
+  }
 }
 
 .mapboxgl-popup-content {
-  text-align: center;
   font-family: 'Open Sans', sans-serif;
 }
 </style>

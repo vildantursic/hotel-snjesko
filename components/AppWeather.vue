@@ -26,16 +26,22 @@
 </script>
 
 <style lang="scss" scoped>
+@import "assets/mixins";
+
 .wrapper{
   position: relative;
   width: 400px;
   height: 240px;
+
+  @include responsiveness("sm", "xs") { width: 100%; }
 }
 
 .box{
   background: rgba(76, 127, 230, 1);
   width: 400px;
   height: 130px;
+
+  @include responsiveness("sm", "xs") { width: 100%; }
 }
 
 .box:after{

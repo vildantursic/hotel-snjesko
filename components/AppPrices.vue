@@ -5,12 +5,11 @@
 
         <div class="pricing-plan">
           <div class="pricing-img-wrapper">
-            <img src="/bed-blue.png" alt="" class="pricing-img xs">
+            <img src="/icons/bed-blue.png" alt="" class="pricing-img xs">
           </div>
           <h2 class="pricing-header">2 Beds</h2>
           <ul class="pricing-features">
-            <li class="pricing-features-item">Amazing for couples</li>
-            <li class="pricing-features-item">Astonishing view from hotel</li>
+            <li class="pricing-features-item">For couples</li>
           </ul>
           <span class="pricing-price">€40</span>
           <a target="_blank" href="https://www.booking.com/hotel/ba/snjesko.en-gb.html" class="pricing-button">Reserve</a>
@@ -18,25 +17,23 @@
 
         <div class="pricing-plan">
           <div class="pricing-img-wrapper">
-            <img src="/bed-blue.png" alt="" class="pricing-img sm">
+            <img src="/icons/bed-blue.png" alt="" class="pricing-img sm">
           </div>
           <h2 class="pricing-header">3 Beds</h2>
           <ul class="pricing-features">
-            <li class="pricing-features-item">Amazing for family</li>
-            <li class="pricing-features-item">Astonishing view from hotel</li>
+            <li class="pricing-features-item">For family</li>
           </ul>
           <span class="pricing-price">€35</span>
-          <a target="_blank" href="https://www.booking.com/hotel/ba/snjesko.en-gb.html" class="pricing-button is-featured">Reserve</a>
+          <a target="_blank" href="https://www.booking.com/hotel/ba/snjesko.en-gb.html" class="pricing-button">Reserve</a>
         </div>
 
         <div class="pricing-plan">
           <div class="pricing-img-wrapper">
-            <img src="/bed-blue.png" alt="" class="pricing-img md">
+            <img src="/icons/bed-blue.png" alt="" class="pricing-img md">
           </div>
           <h2 class="pricing-header">4 Beds</h2>
           <ul class="pricing-features">
-            <li class="pricing-features-item">Amazing for family</li>
-            <li class="pricing-features-item">Astonishing view from hotel</li>
+            <li class="pricing-features-item">For family</li>
           </ul>
           <span class="pricing-price">€30</span>
           <a target="_blank" href="https://www.booking.com/hotel/ba/snjesko.en-gb.html" class="pricing-button">Reserve</a>
@@ -44,12 +41,11 @@
 
         <div class="pricing-plan">
           <div class="pricing-img-wrapper">
-            <img src="/bed-blue.png" alt="" class="pricing-img lg">
+            <img src="/icons/bed-blue.png" alt="" class="pricing-img lg">
           </div>
           <h2 class="pricing-header">5 Beds</h2>
           <ul class="pricing-features">
-            <li class="pricing-features-item">Amazing for group of friends</li>
-            <li class="pricing-features-item">Astonishing view from hotel</li>
+            <li class="pricing-features-item">For group of friends</li>
           </ul>
           <span class="pricing-price">€30</span>
           <a target="_blank" href="https://www.booking.com/hotel/ba/snjesko.en-gb.html" class="pricing-button">Reserve</a>
@@ -253,20 +249,18 @@ export default {
   padding: 15px 35px;
   text-decoration: none;
   transition: all 150ms ease-in-out;
-}
 
-.pricing-button:hover,
-.pricing-button:focus {
-  background-color: #e1f1ff;
+  &:hover, &:active {
+    background-color: #e1f1ff;
+  }
 }
 
 .pricing-button.is-featured {
   background-color: #48aaff;
   color: #fff;
-}
 
-.pricing-button.is-featured:hover,
-.pricing-button.is-featured:active {
-  background-color: #269aff;
+  &:hover, &:active {
+    background-color: #269aff;
+  }
 }
 </style>

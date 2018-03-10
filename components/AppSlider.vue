@@ -1,8 +1,8 @@
 <template>
   <div v-swiper:mySwiper="swiperOption" class="my-swiper">
     <div class="swiper-wrapper">
-      <div class="swiper-slide" v-for="(image, index) in images" v-bind:key="index">
-        <img :src="image">
+      <div class="swiper-slide" v-for="(image, index) in images" :key="index">
+        <img v-img:group :src="image">
       </div>
     </div>
     <div class="swiper-pagination swiper-pagination-bullets"></div>
@@ -10,6 +10,11 @@
 </template>
 
 <script>
+  import Vue from 'vue';
+  import VueImg from 'v-img';
+
+  Vue.use(VueImg);
+
   export default {
     props: ['images'],
     data () {
@@ -17,6 +22,11 @@
         swiperOption: {
           slidesPerView: 3,
           spaceBetween: 30,
+          loop: true,
+          autoplay: {
+            delay: 2500,
+            disableOnInteraction: false
+          },
           pagination: {
             el: '.swiper-pagination',
             clickable: true
@@ -50,7 +60,7 @@
 
 <style lang="scss" scoped>
   .my-swiper {
-    height: 400px;
+    height: 350px;
     width: 100%;
     overflow: hidden;
 
@@ -61,6 +71,7 @@
         font-size: 38px;
         font-weight: 700;
         background-color: #eee;
+        overflow: hidden;
 
         img {
           height: 100%;

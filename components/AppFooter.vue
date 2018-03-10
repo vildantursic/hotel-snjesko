@@ -16,7 +16,7 @@
       <ul class="snjesko-list">
         <li><a href="mailto">info@hotelsnjesko.ba</a></li>
         <li><a>+387 63 718 648</a></li>
-        <li><a href="https://www.booking.com/hotel/ba/snjesko.en-gb.html">Booking.com</a></li>
+        <li><a target="_blank" href="https://www.booking.com/hotel/ba/snjesko.en-gb.html">Booking.com</a></li>
       </ul>
       <h3>Legal</h3>
       <ul class="snjesko-list">
@@ -37,7 +37,10 @@ footer {
   width: 100%;
   color: white;
 
-  @include responsiveness("sm", "xs") { flex-direction: column };
+  @include responsiveness("sm", "xs") {
+    flex-direction: column;
+    padding: 0 10px;
+  };
 
   a {
     &:hover {

@@ -2,10 +2,10 @@
   <section class="container">
     <app-header/>
     <div class="content">
-      <section class="box section1 top odd">
+      <section class="box section1 top odd center-heading">
         <app-snowman></app-snowman>
         <div class="hotel">
-          <div class="rating">
+          <div class="rating booking">
             <a href="https://www.booking.com/hotel/ba/snjesko.en-gb.html">
               <img src="/booking-dot-com.png" alt="">
             </a>
@@ -16,7 +16,7 @@
             <img src="/star.png" alt="">
             <img src="/star.png" alt="">
           </div>
-          <div class="rating">
+          <div class="rating trip">
             <a href="https://www.tripadvisor.com/Hotel_Review-g303194-d2235497-Reviews-Hotel_Snjesko-Jahorina_Republika_Srpska.html">
               <img src="/trip-advisor.png" alt="">
             </a>
@@ -25,13 +25,14 @@
         </div>
       </section>
       <section class="box section2 even">
+        <!-- <h1>SOME TEXT GOES HERE</h1> -->
         <div class="slider-box">
           <app-slider v-bind:images="images"></app-slider>
         </div>
       </section>
       <section class="box section3 odd">
         <div class="fun-section">
-          <img class="mountain-img" src="/mountain.jpg" alt="">
+          <img class="mountain-img" src="/images/mountain.jpg" alt="">
           <div class="fun-section-content">
             <h1>Welcome to Hotel Snjesko</h1>
             <p>
@@ -55,6 +56,25 @@
                         v-bind:temp="weather.currently.temperature"
                         v-bind:cond="weather.currently.summary"
                         v-bind:loc="'Jahorina'"/>
+
+            <div class="">
+              <p class="">
+                <a target="_blank" href="https://www.google.ba/maps/place/Hotel+Snje%C5%A1ko/@43.7361971,18.5625654,17z/data=!3m1!4b1!4m5!3m4!1s0x4758957fee83af0d:0x7367bd4fb81bc6fb!8m2!3d43.7361971!4d18.5647541?hl=en">
+                  Check out Google Maps for location
+                </a>
+              </p>
+              <h4>Directions</h4>
+              <p class="">
+                <a target="_blank" href="https://www.google.ba/maps/dir/Me%C4%91unarodni+aerodrom+Sarajevo/Hotel+Snje%C5%A1ko,+Jahorina+71430/@43.7825408,18.3836372,12.06z/data=!4m13!4m12!1m5!1m1!1s0x4758c9f5798e6ed3:0x4418069785b9985a!2m2!1d18.3365271!2d43.8257957!1m5!1m1!1s0x4758957fee83af0d:0x7367bd4fb81bc6fb!2m2!1d18.5647541!2d43.7361971?hl=en">
+                  Sarajevo airport - Hotel
+                </a>
+              </p>
+              <p class="">
+                <a target="_blank" href="https://www.google.ba/maps/dir/Sebilj,+Ba%C5%A1%C4%8Dar%C5%A1ija,+Sarajevo/Hotel+Snje%C5%A1ko,+Jahorina+71430/@43.7989265,18.4253232,12z/data=!3m1!4b1!4m14!4m13!1m5!1m1!1s0x4758c8c9afb914f5:0x1a4eeac70384899!2m2!1d18.431241!2d43.859721!1m5!1m1!1s0x4758957fee83af0d:0x7367bd4fb81bc6fb!2m2!1d18.5647541!2d43.7361971!3e0?hl=en">
+                  Sarajevo old city - Hotel
+                </a>
+              </p>
+            </div>
           </div>
 
           <div class="map-box">
@@ -84,15 +104,10 @@ export default {
   data() {
     return {
       images: [
-        '/hotel1.jpg',
-        '/hotel2.jpg',
-        '/jahorina.jpg',
-        '/hotel1.jpg',
-        '/hotel2.jpg',
-        '/jahorina.jpg',
-        '/hotel1.jpg',
-        '/hotel2.jpg',
-        '/jahorina.jpg'
+        '/images/hotel1.jpg',
+        '/images/hotel2.jpg',
+        '/images/jahorina.jpg',
+        '/images/jahorina2.jpg'
       ],
       weather: [],
       errors: [],
@@ -103,7 +118,6 @@ export default {
   created() {
     axios.get(`https://crossorigin.me/https://api.darksky.net/forecast/27e7016367bae8c9d7126ed15dff44b5/43.7385,18.5636?units=auto`)
     .then(response => {
-      console.log(response);
       this.weather = response.data
     })
     .catch(e => {
@@ -126,16 +140,37 @@ export default {
 @import "assets/home";
 // @import "assets/mixins";
 
-.hotel {
+.center-heading {
   display: flex;
   align-items: center;
-  justify-content: center;
+  flex-direction: column;
+}
+
+.hotel {
+  display: grid;
+  grid-template-areas: "booking stars trip";
+  grid-template-columns: 150px 200px 150px;
   margin-top: 20px;
+
+  @include responsiveness('sm', 'xs') {
+    grid-template-areas: "stars"
+                         "booking"
+                         "trip";
+    grid-template-columns: 100% 100% 100%;
+    grid-gap: 20px;
+  };
 
   div {
     margin: 0 20px;
   }
   .stars {
+    grid-area: stars
+  }
+  .booking {
+    grid-area: booking
+  }
+  .trip {
+    grid-area: trip
   }
   .rating {
     display: flex;
@@ -158,11 +193,15 @@ export default {
   align-items: center;
   justify-content: space-around;
 
+  @include responsiveness("sm", "xs") { flex-direction: column };
+
   .map-box {
     transform: perspective(300px) rotateY(-5deg);
     transform-origin: middle right;
     -webkit-font-smoothing: antialiased;
     backface-visibility: hidden;
+
+    @include responsiveness("sm", "xs") { transform: perspective(300px) rotateY(0deg); };
   }
 }
 
@@ -174,11 +213,18 @@ export default {
   @include responsiveness("sm", "xs") { flex-direction: column };
 
   .mountain-img {
-    transform: perspective(300px) rotateY(5deg);
+    transform: perspective(300px) rotateY(10deg);
     transform-origin: middle right;
     -webkit-font-smoothing: antialiased;
     backface-visibility: hidden;
     width: 40%;
+    transition: ease .3s;
+
+    @include responsiveness("sm", "xs") { width: 100% };
+
+    &:hover {
+      transform: perspective(300px) rotateY(5deg);
+    }
   }
 
   .fun-section-content {
@@ -188,6 +234,10 @@ export default {
       font-size: 1.3em;
     }
   }
+}
+
+.section2 {
+  text-align: center;
 }
 
 </style>
